@@ -39,30 +39,7 @@ fi
 case "$TERM" in
 xterm-color | *-256color) color_prompt=yes ;;
 esac
-
-# uncomment for a colored prompt, if the terminal has the capability; turned
-# off by default to not distract the user: the focus in a terminal window
-# should be on the output of commands, not on the prompt
-#force_color_prompt=yes
-
-if [ -n "$force_color_prompt" ]; then
-	if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-		# We have color support; assume it's compliant with Ecma-48
-		# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-		# a case would tend to support setf rather than setaf.)
-		color_prompt=yes
-	else
-		color_prompt=
-	fi
-fi
-
-if [ "$color_prompt" = yes ]; then
-	PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-else
-	PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-fi
-unset color_prompt force_color_prompt
-
+#
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
 xterm* | rxvt*)
@@ -75,8 +52,8 @@ esac
 if [ -x /usr/bin/dircolors ]; then
 	test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
 	alias ls='ls --color=auto'
-	#alias dir='dir --color=auto'
-	#alias vdir='vdir --color=auto'
+	alias dir='dir --color=auto'
+	alias vdir='vdir --color=auto'
 
 	alias grep='grep --color=auto'
 	alias fgrep='fgrep --color=auto'
@@ -91,8 +68,8 @@ fi
 # ~/.bash_aliases, instead of adding them here directly.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
-if [ -f ~/.bash_aliases ]; then
-	. ~/.bash_aliases
+if [ -f ~/.aliases ]; then
+	. ~/.aliases
 fi
 
 # enable programmable completion features (you don't need to enable
@@ -142,26 +119,12 @@ fi
 
 unset env
 
-function parse_git_branch() {
-	# Parse the current git branch name and print it
-	which git &>/dev/null || return
-	local branch=$(git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')
-	[[ -n $branch ]] && echo " [${branch}]"
-}
+# Set when Rust is installed
+# . "$HOME/.cargo/env"
 
-function set_PS1 {
-	# The built-in PS1 variable defines the format of the user's shell
-	# prompt. This version displays:
-	#   - current directory (\w)
-	#   - current git branch (parse_git_branch)
-	#   - user name (\u)
-	#   - host machine (\h)
-	# See also: `man bash`.
-	PS1='
-\[\e[1;33m\]\[\e[0m\] \[\e[1;35m\]\w\[\e[0m\]$(parse_git_branch)
-\[\e[1;36m\][\u.\h]\[\e[0m\]$Ps1Tail> '
-}
+# set up starship prompt
+eval "$(starship init bash)"
 
-set_PS1 # Call the set_PS1 function
-
-. "$HOME/.cargo/env"
+# # Set up fzf key bindings and fuzzy completion
+eval "$(fzf --bash)"
+export GOPATH=$HOME/go

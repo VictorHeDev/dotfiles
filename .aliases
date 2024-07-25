@@ -1,0 +1,79 @@
+# -- Git --
+alias ga='git add'
+alias gst='git status' # upgrade your git if -sb breaks for you. it's fun.
+alias gcmsg='git commit -m'
+alias gp="git push"      # Publish to remote branch (Usage: gitpub <branch>)
+alias gpull="git pull"      # Get latest from remote branch (Usage: gitupd <branch>)
+alias gd='git diff'
+alias logdog='log --oneline --decorate --graph'              # Oneline pretty log with graph for branches
+alias gl='git pull --prune'
+alias glog="git log --graph --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
+alias gca='git commit -a'
+alias gco='git checkout'
+alias gcb='git copy-branch-name'
+alias gb='git branch'
+alias gs='git status -sb' # upgrade your git if -sb breaks for you. it's fun.
+alias gac='git add -A && git commit -m'
+alias gsync='git checkout main && git fetch --all && git merge upstream/main && git push -u origin main'
+
+# -- Moving around and exploring --
+alias ..='cd ../'                   # 1 level UP!
+alias path='echo -e ${PATH//:/\\n}' # Display the contents of $PATH
+alias ax="chmod a+x"                # Make a file executable
+
+alias ls='ls --color=auto -CF'      # Colored ls
+alias ll='ls -AFlhtr'               # Show the latest info
+alias l='ll'                        # Yeah, I make mistakes!
+alias latr="ls -alhtr"              # Commonly used ls command
+
+alias dir='dir --color=auto'
+alias vdir='vdir --color=auto'
+
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+alias ngrep="grep --color=auto -n"   # Colored grep with line numbers
+alias negrep="egrep --color=auto -n" # Colored egrep with line numbers
+alias nfgrep="fgrep --color=auto -n" # Colored fgrep with line numbers
+
+alias df="df -Tha --total"          # Display free disk space
+alias du="du -sh"                   # Disk usage
+alias free="free -mt"               # Available RAM
+alias rm="rm -i"                    # ask user to confirm deletion
+
+# -- Docker --
+alias dc="docker-compose"
+
+# -- DPKG Build --
+alias ddd="dpkg-distro-dev"
+alias dddb="dpkg-distro-dev build"
+alias dddi="dpkg-distro-dev install --yes"
+alias dddr="dpkg-distro-dev run"
+
+# -- Subrosa --
+alias subrosa-upload-tool="/Volumes/subrosa-upload-tool/subrosa-upload-tool"
+
+# -- ComDB2 --
+alias zomo="cdb2sql"                # Start interactive query mode (Usage: zomo <dbname> <cluster> - )
+alias dbinit="initcomdb2"           # Init database using .lrl (Usage: dbinit <lrl_file>)
+alias dbscr="cmdb2scr"              # Create database script using .lrl (Usage: dbscr <dbname> -lrl <full_path_to_lrl>)
+alias dbinfo="where_comdb2"         # Get database deployment info (Usage: dbinfo <dbname>)
+alias dbmod="comdb2sc.tsk"          # Modify database (Usage: dbmod <dbname> [add|drop|alter] <tablename> <csc2_file>)
+alias dbexplain="comdb2sqlexplain"  # Explain SQL execution plan (Usage: dbexplain <dbname> <query>)
+alias dbshow="comdb2dumpcsc"        # Show tables or table schema (Usage: dbshow <dbname> [tablename])
+
+# Data loading script from training repository
+# Usage: dbload [options] <data file>
+# Options: -t <cluster> ('local' is default)
+#          -c (deletes all rows)
+#          -n (generates SQL but doesn't update)
+alias dbload="comdb2_table_loader"
+
+# -- BAS --
+alias bcg="bas_codegen.pl -m all"
+alias bpg="basping -l tcp://0:28588"
+alias bcli="/bb/bin/basclient"
+
+# Update/upgrade Homebrew and packages
+alias update_brew='brew update; brew upgrade; brew upgrade --cask; brew cleanup'
+
