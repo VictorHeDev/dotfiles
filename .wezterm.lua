@@ -15,7 +15,7 @@ config.font = wezterm.font_with_fallback({
 	"JetBrains Mono",
 	"Noto Color Emoji",
 })
-config.font_size = 12.0
+config.font_size = 11.0
 
 -- Set theme
 -- config.color_scheme = "Catppuccin Macchiato"
@@ -27,7 +27,7 @@ config.tab_max_width = 24
 config.use_dead_keys = false
 config.window_decorations = "RESIZE" -- no title bar
 config.window_close_confirmation = "AlwaysPrompt"
-config.window_background_opacity = 0.97
+config.window_background_opacity = 0.90
 
 -- Dim inactive panes
 config.inactive_pane_hsb = {
