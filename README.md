@@ -18,3 +18,18 @@ If you would like to preview what stow will do before actually linking any dotfi
 ```bash
 stow -nv bashrc  # dry run
 ```
+
+## Set up Neovim
+
+If you are cloning this dotfiles directory for the first time, run:
+
+```bash 
+git clone --recurse-submodules git@github.com:VictorHeDev/dotfiles.git
+```
+
+If you already have this dotfiles repository cloned onto your system, run:
+
+```bash 
+git submodule init
+git submodule update
+```
