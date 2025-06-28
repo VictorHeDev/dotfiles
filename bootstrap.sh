@@ -22,7 +22,7 @@ set -e
 cd "$(dirname "$0")" || exit 1
 echo "📦 Bootstrapping dotfiles using GNU Stow for OS: $OS"
 
-########################## Available OS
+########################## Vars
 IS_MAC=false
 IS_LINUX=false
 ##########################
@@ -38,21 +38,13 @@ esac
 
 # Set stow package list depending on OS
 if $IS_MAC; then
-	PACKAGES=(
-		aliases
-		ghostty
-		tmux
-		nvim
+	PACKAGES+=(
 		zsh
 		hammerspoon
 	)
 elif $IS_LINUX; then
-	PACKAGES=(
-		aliases
+	PACKAGES+=(
 		bash
-		ghostty
-		tmux
-		nvim
 	)
 fi
 
