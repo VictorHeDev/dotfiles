@@ -63,9 +63,9 @@ fi
 # Install zsh plugins, tmux plugin manager, and CLI tools
 echo "🔌 Installing zsh plugins, tmux plugin manager, and CLI tools..."
 if $IS_MAC; then
-	brew install zsh-autosuggestions zsh-syntax-highlighting tmux-plugin-manager bat zoxide
+	brew install zsh-autosuggestions zsh-syntax-highlighting tmux-plugin-manager bat zoxide git-delta
 elif $IS_LINUX; then
-	sudo apt install -y zsh-autosuggestions zsh-syntax-highlighting tmux-plugin-manager bat zoxide
+	sudo apt install -y zsh-autosuggestions zsh-syntax-highlighting tmux-plugin-manager bat zoxide git-delta
 fi
 
 # Loop and unpack for each

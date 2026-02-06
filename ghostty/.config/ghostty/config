@@ -27,3 +27,6 @@ palette = 12=#7aa2f7
 palette = 13=#bb9af7
 palette = 14=#7dcfff
 palette = 15=#c0caf5
+
+# Fix Shift+Enter in Claude Code (send newline instead of CSI sequence)
+keybind = shift+enter=text:\n

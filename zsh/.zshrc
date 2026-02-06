@@ -1,3 +1,9 @@
+# ===================== TMUX AUTO-ATTACH =====================
+# If SSHing in and not already in tmux, attach or create a session
+if [ -n "$SSH_CONNECTION" ] && [ -z "$TMUX" ] && command -v tmux >/dev/null; then
+	tmux new-session -A -s main
+fi
+
 # ========================= OPTIONS =========================
 setopt histignorealldups sharehistory
 setopt hist_reduce_blanks       # remove extra blanks from history
@@ -62,6 +68,14 @@ export PATH="$HOME/.local/bin:$PATH"
 # fzf keybindings (Ctrl+R for history, Ctrl+T for file, Alt+C for cd)
 source /usr/share/doc/fzf/examples/key-bindings.zsh
 source /usr/share/doc/fzf/examples/completion.zsh
+
+# fzf preview with bat (use batcat on Ubuntu, bat elsewhere)
+if command -v batcat >/dev/null; then
+	export FZF_CTRL_T_OPTS="--preview 'batcat --color=always --line-range=:500 {}' --preview-window=right:60%"
+elif command -v bat >/dev/null; then
+	export FZF_CTRL_T_OPTS="--preview 'bat --color=always --line-range=:500 {}' --preview-window=right:60%"
+fi
+export FZF_ALT_C_OPTS="--preview 'ls -la {}' --preview-window=right:40%"
 
 # Starship prompt
 eval "$(starship init zsh)"
