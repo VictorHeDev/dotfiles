@@ -45,6 +45,7 @@ if $IS_MAC; then
 elif $IS_LINUX; then
 	PACKAGES+=(
 		bash
+		zsh
 	)
 fi
 
@@ -54,9 +55,17 @@ if ! command -v stow >/dev/null 2>&1; then
 		echo "🔧 Installing stow via Homebrew..."
 		brew install stow
 	elif $IS_LINUX; then
-		echo "🔧 Installing stow via package manager..."
-		sudo dnf install -y stow || sudo apt install -y stow
+		echo "🔧 Installing stow via apt..."
+		sudo apt install -y stow
 	fi
+fi
+
+# Install zsh plugins, tmux plugin manager, and CLI tools
+echo "🔌 Installing zsh plugins, tmux plugin manager, and CLI tools..."
+if $IS_MAC; then
+	brew install zsh-autosuggestions zsh-syntax-highlighting tmux-plugin-manager bat zoxide
+elif $IS_LINUX; then
+	sudo apt install -y zsh-autosuggestions zsh-syntax-highlighting tmux-plugin-manager bat zoxide
 fi
 
 # Loop and unpack for each
