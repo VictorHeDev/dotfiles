@@ -1,5 +1,5 @@
 --[[
-Control window tiling configurations using hotkeys and arrow keys 
+Control window tiling configurations using hotkeys and arrow keys
 
 References:
 - https://gist.github.com/nyergler/7056c61174194a9af9b4d5d727f1b566
@@ -13,66 +13,66 @@ hs.hotkey.bind({"ctrl", "alt"}, "Left", function()
 	local f = win:frame()
 	local screen = win:screen()
 	local max = screen:frame()
-  
+
 	f.x = max.x
 	f.y = max.y
 	f.w = max.w / 2
 	f.h = max.h
 	win:setFrame(f)
   end)
-  
+
 -- focus current window to right side of the screen
   hs.hotkey.bind({"ctrl", "alt"}, "Right", function()
 	local win = hs.window.focusedWindow()
 	local f = win:frame()
 	local screen = win:screen()
 	local max = screen:frame()
-  
+
 	f.x = max.x + (max.w / 2)
 	f.y = max.y
 	f.w = max.w / 2
 	f.h = max.h
 	win:setFrame(f)
   end)
-  
+
 -- focus current window to upside of the screen
   hs.hotkey.bind({"ctrl", "alt"}, "Up", function()
 	local win = hs.window.focusedWindow()
 	local f = win:frame()
 	local screen = win:screen()
 	local max = screen:frame()
-  
-	f.x = max.x 
+
+	f.x = max.x
 	f.y = max.y
-	f.w = max.w 
+	f.w = max.w
 	f.h = max.h / 2
 	win:setFrame(f)
   end)
-  
+
 -- focus current window to downside of the screen
   hs.hotkey.bind({"ctrl", "alt"}, "Down", function()
 	local win = hs.window.focusedWindow()
 	local f = win:frame()
 	local screen = win:screen()
 	local max = screen:frame()
-  
-	f.x = max.x 
+
+	f.x = max.x
 	f.y = max.y + (max.h / 2)
-	f.w = max.w 
+	f.w = max.w
 	f.h = max.h / 2
 	win:setFrame(f)
   end)
-  
+
 -- focus current window to full display
   hs.hotkey.bind({"ctrl", "alt"}, "Return", function()
 	local win = hs.window.focusedWindow()
 	local f = win:frame()
 	local screen = win:screen()
 	local max = screen:frame()
-  
-	f.x = max.x 
+
+	f.x = max.x
 	f.y = max.y
-	f.w = max.w 
+	f.w = max.w
 	f.h = max.h
 	win:setFrame(f)
   end)
