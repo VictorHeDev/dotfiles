@@ -23,9 +23,12 @@ brew 'direnv'  # secrets management
 # SHELL
 brew 'zsh-autosuggestions'
 brew 'zsh-completions'
+brew 'zsh-syntax-highlighting'
 brew 'fzf'
 brew 'fd'
 brew 'starship'  # prompt
+brew 'zoxide'    # smarter cd
+brew 'git-delta' # better git diffs
 
 # NVIM
 brew 'neovim'
