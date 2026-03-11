@@ -33,7 +33,7 @@ fi
 autoload -Uz compinit
 compinit
 
-command -v dircolors >/dev/null && eval "$(dircolors -b)"
+[[ "$OS" == "Linux" ]] && command -v dircolors >/dev/null && eval "$(dircolors -b)"
 
 # Case-insensitive completion (lowercase matches uppercase and vice versa)
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'
@@ -66,21 +66,22 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 # ========================= TOOLS ==========================
 export PATH="$HOME/.local/bin:$PATH"
 
-# Homebrew (macOS)
-[ -d /opt/homebrew/bin ] && export PATH="/opt/homebrew/bin:$PATH"
-[ -d /opt/homebrew/share/zsh-autosuggestions ] && \
-    source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-[ -d /opt/homebrew/share/zsh-completions ] && \
-    fpath+=/opt/homebrew/share/zsh-completions
-
 # pyenv
 export PATH="$HOME/.pyenv/shims:$PATH"
 
-# fzf keybindings (Ctrl+R for history, Ctrl+T for file, Alt+C for cd)
-[ -f /usr/share/doc/fzf/examples/key-bindings.zsh ] && \
-    source /usr/share/doc/fzf/examples/key-bindings.zsh
-[ -f /usr/share/doc/fzf/examples/completion.zsh ] && \
-    source /usr/share/doc/fzf/examples/completion.zsh
+if [[ "$OS" == "Darwin" ]]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+    fpath+=/opt/homebrew/share/zsh-completions
+    # fzf keybindings (Ctrl+R for history, Ctrl+T for file, Alt+C for cd)
+    source /opt/homebrew/opt/fzf/shell/key-bindings.zsh
+    source /opt/homebrew/opt/fzf/shell/completion.zsh
+else
+    # fzf keybindings (Ctrl+R for history, Ctrl+T for file, Alt+C for cd)
+    [ -f /usr/share/doc/fzf/examples/key-bindings.zsh ] && \
+        source /usr/share/doc/fzf/examples/key-bindings.zsh
+    [ -f /usr/share/doc/fzf/examples/completion.zsh ] && \
+        source /usr/share/doc/fzf/examples/completion.zsh
+fi
 
 # fzf preview with bat (use batcat on Ubuntu, bat elsewhere)
 if command -v batcat >/dev/null; then
@@ -100,10 +101,13 @@ command -v zoxide >/dev/null && eval "$(zoxide init zsh)"
 command -v batcat >/dev/null && alias bat='batcat'
 
 # ========================= PLUGINS =========================
-# Fish-like autosuggestions (accept with right-arrow)
-[ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ] && \
-    source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-
-# Syntax highlighting (must be sourced LAST)
-[ -f /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && \
-    source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# Fish-like autosuggestions + syntax highlighting (must be sourced LAST)
+if [[ "$OS" == "Darwin" ]]; then
+    source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+    source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+else
+    [ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ] && \
+        source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+    [ -f /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && \
+        source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi

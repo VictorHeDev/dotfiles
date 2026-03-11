@@ -21,13 +21,9 @@ alias ..='cd ../'                   # 1 level UP!
 alias path='echo -e ${PATH//:/\\n}' # Display the contents of $PATH
 alias ax="chmod a+x"                # Make a file executable
 
-alias ls='ls --color=auto -CF'      # Colored ls
 alias ll='ls -AFlhtr'               # Show the latest info
 alias l='ll'                        # Yeah, I make mistakes!
 alias latr="ls -alhtr"              # Commonly used ls command
-
-alias dir='dir --color=auto'
-alias vdir='vdir --color=auto'
 
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
@@ -36,10 +32,19 @@ alias ngrep="grep --color=auto -n"   # Colored grep with line numbers
 alias negrep="egrep --color=auto -n" # Colored egrep with line numbers
 alias nfgrep="fgrep --color=auto -n" # Colored fgrep with line numbers
 
-alias df="df -Tha --total"          # Display free disk space
 alias du="du -sh"                   # Disk usage
-alias free="free -mt"               # Available RAM
 alias rm="rm -i"                    # ask user to confirm deletion
+
+if [[ "$OS" == "Darwin" ]]; then
+    alias ls='ls -GCF'              # Colored ls (macOS)
+    alias df="df -h"                # Human-readable disk space
+else
+    alias ls='ls --color=auto -CF'  # Colored ls (Linux)
+    alias dir='dir --color=auto'
+    alias vdir='vdir --color=auto'
+    alias df="df -Tha --total"      # Display free disk space
+    alias free="free -mt"           # Available RAM
+fi
 
 # -- SSH --
 alias ssh_wood='ssh wood@192.168.1.194'
