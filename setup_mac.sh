@@ -13,7 +13,7 @@ fi
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 echo "📦 Installing core Brewfile..."
-# brew bundle --file "$DOTFILES_DIR/brew/Brewfile.core"
+brew bundle --file "$DOTFILES_DIR/brew/Brewfile.core"
 
 # Optional Kubernetes tools
 if [[ "${INSTALL_K8S:-false}" == "true" ]]; then
