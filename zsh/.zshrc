@@ -28,6 +28,11 @@ if [ -f ~/.aliases ]; then
 	. ~/.aliases
 fi
 
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+alias ssh_wood='ssh wood@192.168.1.194'
+
 # ======================== COMPLETION ========================
 autoload -Uz compinit
 compinit
@@ -65,9 +70,21 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 # ========================= TOOLS ==========================
 export PATH="$HOME/.local/bin:$PATH"
 
+# Homebrew (macOS)
+[ -d /opt/homebrew/bin ] && export PATH="/opt/homebrew/bin:$PATH"
+[ -d /opt/homebrew/share/zsh-autosuggestions ] && \
+    source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+[ -d /opt/homebrew/share/zsh-completions ] && \
+    fpath+=/opt/homebrew/share/zsh-completions
+
+# pyenv
+export PATH="$HOME/.pyenv/shims:$PATH"
+
 # fzf keybindings (Ctrl+R for history, Ctrl+T for file, Alt+C for cd)
-source /usr/share/doc/fzf/examples/key-bindings.zsh
-source /usr/share/doc/fzf/examples/completion.zsh
+[ -f /usr/share/doc/fzf/examples/key-bindings.zsh ] && \
+    source /usr/share/doc/fzf/examples/key-bindings.zsh
+[ -f /usr/share/doc/fzf/examples/completion.zsh ] && \
+    source /usr/share/doc/fzf/examples/completion.zsh
 
 # fzf preview with bat (use batcat on Ubuntu, bat elsewhere)
 if command -v batcat >/dev/null; then

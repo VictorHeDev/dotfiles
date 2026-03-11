@@ -1,6 +1,4 @@
 # install packages
-tap 'homebrew/cask-fonts'
-tap 'homebrew/services'
 tap 'buo/cask-upgrade'
 brew 'mas'
 
@@ -18,34 +16,30 @@ brew 'gawk'
 brew 'gsed'
 brew 'gnu-getopt'
 brew 'grep'
+brew 'ripgrep'
+brew 'bat'
+brew 'direnv'  # secrets management
 
 # SHELL
 brew 'zsh-autosuggestions'
 brew 'zsh-completions'
 brew 'fzf'
+brew 'fd'
+brew 'starship'  # prompt
 
 # NVIM
 brew 'neovim'
 brew 'tmux'
 brew 'lazygit'
 
-# containers
-brew 'argo'
-brew 'kubectl'
-brew 'vmware-tanzu/kpack-cli'
-brew 'kp'
-
 # casks
-# cask 'firefox'
 cask 'hammerspoon'
 cask 'raycast'  # spotlight replacement
 cask 'obsidian'
 cask 'ghostty'  # terminal emulator
-cask 'insomnia'  
+cask 'insomnia'
+cask 'bitwarden'
 
 # fonts
 cask 'font-fira-code'
 cask 'font-jetbrains-mono'
-
-# vscode -- install-extension
-
