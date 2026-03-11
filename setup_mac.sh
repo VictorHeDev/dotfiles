@@ -92,7 +92,7 @@ cd "$STOW_DIR"
 # stow git
 # stow tmux
 # stow nvim
-stow zsh ghostty hammerspoon
+stow aliases zsh ghostty hammerspoon
 
 echo "✅ Core dotfiles stowed"
 

@@ -28,10 +28,6 @@ if [ -f ~/.aliases ]; then
 	. ~/.aliases
 fi
 
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
-alias ssh_wood='ssh wood@192.168.1.194'
 
 # ======================== COMPLETION ========================
 autoload -Uz compinit
