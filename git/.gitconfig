@@ -1,0 +1,28 @@
+[init]
+	defaultBranch = main
+[user]
+	name = Victor He
+	email = victorhe97@gmail.com
+[core]
+	pager = delta
+	editor = nvim
+	excludesfile = ~/.gitignore
+	autocrlf = input
+[interactive]
+	diffFilter = delta --color-only
+[delta]
+	navigate = true
+	line-numbers = true
+	side-by-side = true
+[merge]
+	conflictstyle = zdiff3
+[color]
+	ui = auto
+[alias]
+	st = status
+	co = checkout
+	br = branch
+	cm = commit
+	lg = log --oneline --graph --decorate --all
+[includeIf "gitdir:~/work/"]
+	path = ~/.gitconfig-work

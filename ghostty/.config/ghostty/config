@@ -2,8 +2,10 @@
 
 clipboard-read = allow
 clipboard-write = allow
+copy-on-select = clipboard
 background-opacity = 0.9
-theme = tokyonight-storm
+background-blur = 5
+theme = TokyoNight Storm
 bold-is-bright = true
 background = #24283b
 foreground = #c0caf5
@@ -27,3 +29,6 @@ palette = 12=#7aa2f7
 palette = 13=#bb9af7
 palette = 14=#7dcfff
 palette = 15=#c0caf5
+
+# Fix Shift+Enter in Claude Code (send newline instead of CSI sequence)
+keybind = shift+enter=text:\n

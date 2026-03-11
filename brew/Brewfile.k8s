@@ -1,0 +1,6 @@
+# containers
+brew 'argo'
+brew 'kubectl'
+tap 'vmware-tanzu/kpack-cli'
+brew 'kp'
+

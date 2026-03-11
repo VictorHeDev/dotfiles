@@ -1,39 +1,56 @@
 # Victor's Dotfiles
 
-This repository contains the many dotfiles which I like to be shared across my development machines. I primarily use MacOS and Linux (Fedora), and the dotfiles are managed using the GNU Stow project. To unpack the dotfiles and to symlink, simply:
+Dotfiles for macOS (Apple Silicon) and Ubuntu server, managed with [GNU Stow](https://www.gnu.org/software/stow/). Goal: new development environment up and running in <30 minutes.
 
-1. Clone this repo into the root directory
-2. `cd` into this directory
-3. Run:
+## First-time setup
 
-  ```bash
-  stow <filename>
-  # stow bashrc
-  ```
+### 1. Create an SSH key for GitHub
 
-## Dry Run
+[Generate an SSH key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) and add it to your GitHub account before cloning.
 
-If you would like to preview what stow will do before actually linking any dotfiles:
+### 2. Clone the repo
 
 ```bash
-stow -nv bashrc  # dry run
+git clone git@github.com:VictorHeDev/dotfiles.git ~/dotfiles
+cd ~/dotfiles
 ```
 
-## Set up Neovim
+### 3. Run the setup script for your OS
 
-If you are cloning this dotfiles directory for the first time, run:
+**macOS:**
+```bash
+./setup_mac.sh
 
-```bash 
-git clone --recurse-submodules git@github.com:VictorHeDev/dotfiles.git
+# With Kubernetes tools:
+INSTALL_K8S=true ./setup_mac.sh
 ```
 
-If you already have this dotfiles repository cloned onto your system, run:
-
-```bash 
-git submodule init
-git submodule update
+**Ubuntu server:**
+```bash
+./setup_linux.sh
 ```
 
-### MacOS
+The setup scripts will:
+- Install packages
+- Set up dotfiles via stow
 
-Run the Brewfile with the command `brew bundle`
+## Stow packages
+
+| Package | Contents |
+|---|---|
+| `aliases` | Shell aliases |
+| `git` | `.gitconfig`, `.gitignore` |
+| `ghostty` | Terminal config |
+| `hammerspoon` | Window management (macOS only) |
+| `ssh` | SSH config |
+| `zsh` | `.zshrc`, `.zshenv`, `.zprofile` |
+
+To manually stow a package:
+```bash
+stow --target "$HOME" <package>
+```
+
+To preview what stow will do without making changes:
+```bash
+stow --dry-run --target "$HOME" <package>
+```

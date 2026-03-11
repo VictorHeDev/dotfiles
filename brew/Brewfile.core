@@ -1,0 +1,48 @@
+# install packages
+tap 'buo/cask-upgrade'
+brew 'mas'
+
+# brew install
+brew 'wget'
+brew 'stow'
+brew 'pyenv'
+brew 'gh'
+brew 'git'
+brew 'tree'
+brew 'jq'
+brew 'tldr'
+brew 'coreutils'
+brew 'gawk'
+brew 'gsed'
+brew 'gnu-getopt'
+brew 'grep'
+brew 'ripgrep'
+brew 'bat'
+brew 'direnv'  # secrets management
+
+# SHELL
+brew 'zsh-autosuggestions'
+brew 'zsh-completions'
+brew 'zsh-syntax-highlighting'
+brew 'fzf'
+brew 'fd'
+brew 'starship'  # prompt
+brew 'zoxide'    # smarter cd
+brew 'git-delta' # better git diffs
+
+# NVIM
+brew 'neovim'
+brew 'tmux'
+brew 'lazygit'
+
+# casks
+cask 'hammerspoon'
+cask 'raycast'  # spotlight replacement
+cask 'obsidian'
+cask 'ghostty'  # terminal emulator
+cask 'insomnia'
+cask 'bitwarden'
+
+# fonts
+cask 'font-fira-code'
+cask 'font-jetbrains-mono'
