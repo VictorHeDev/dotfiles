@@ -41,6 +41,9 @@ alias du="du -sh"                   # Disk usage
 alias free="free -mt"               # Available RAM
 alias rm="rm -i"                    # ask user to confirm deletion
 
+# -- SSH --
+alias ssh_wood='ssh wood@192.168.1.194'
+
 # -- Docker --
 alias dc="docker compose"
 
