@@ -80,7 +80,6 @@ echo "✅ Keyboard setup complete"
 echo "✅ Spaces setup complete"
 
 # ===================== DOTFILES =====================
-# TODO: Add stow commands for each dotfile directory
 echo "🔗 Setting up dotfiles with stow..."
 
 STOW_DIR="$DOTFILES_DIR"
@@ -88,11 +87,7 @@ STOW_TARGET="$HOME"
 
 cd "$STOW_DIR"
 
-# Core dotfiles (safe on all machines)
-# stow git
-# stow tmux
-# stow nvim
-stow aliases zsh ghostty hammerspoon
+stow --target "$STOW_TARGET" aliases git ssh zsh ghostty hammerspoon
 
 echo "✅ Core dotfiles stowed"
 
