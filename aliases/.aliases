@@ -1,7 +1,7 @@
 # -- Git --
 alias ga='git add'
 alias gst='git status' # upgrade your git if -sb breaks for you. it's fun.
-alias gcmsg='git commit -m'
+alias gcm='git commit -m'
 alias gp="git push"      # Publish to remote branch (Usage: gitpub <branch>)
 alias gpull="git pull"      # Get latest from remote branch (Usage: gitupd <branch>)
 alias gd='git diff'
@@ -14,7 +14,7 @@ alias gcb='git copy-branch-name'
 alias gb='git branch'
 alias gs='git status -sb' # upgrade your git if -sb breaks for you. it's fun.
 alias gac='git add -A && git commit -m'
-alias gsync='git checkout main && git fetch --all && git merge upstream/main && git push -u origin main'
+alias gsync='git checkout main && git fetch upstream && git reset --hard upstream/main && git push -u origin main'
 
 # -- Moving around and exploring --
 alias ..='cd ../'                   # 1 level UP!
