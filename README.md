@@ -39,10 +39,12 @@ The setup scripts will:
 | Package | Contents |
 |---|---|
 | `aliases` | Shell aliases |
+| `claude` | Claude Code `CLAUDE.md` and custom skills |
 | `git` | `.gitconfig`, `.gitignore` |
 | `ghostty` | Terminal config |
 | `hammerspoon` | Window management (macOS only) |
 | `ssh` | SSH config |
+| `tmux` | `.config/tmux/tmux.conf` |
 | `zsh` | `.zshrc`, `.zshenv`, `.zprofile` |
 
 To manually stow a package:

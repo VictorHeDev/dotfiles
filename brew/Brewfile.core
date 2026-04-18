@@ -29,6 +29,7 @@ brew 'fd'
 brew 'starship'  # prompt
 brew 'zoxide'    # smarter cd
 brew 'git-delta' # better git diffs
+brew 'eza'  # replacement for ls
 
 # NVIM
 brew 'neovim'
@@ -37,7 +38,7 @@ brew 'lazygit'
 
 # casks
 cask 'hammerspoon'
-cask 'raycast'  # spotlight replacement
+cask 'alfred'  # spotlight replacement
 cask 'obsidian'
 cask 'ghostty'  # terminal emulator
 cask 'insomnia'
