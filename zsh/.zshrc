@@ -4,6 +4,10 @@ if [ -n "$SSH_CONNECTION" ] && [ -z "$TMUX" ] && command -v tmux >/dev/null; the
 	tmux new-session -A -s main
 fi
 
+# Go stuff
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
+
 # ========================= OPTIONS =========================
 setopt histignorealldups sharehistory
 setopt hist_reduce_blanks       # remove extra blanks from history
