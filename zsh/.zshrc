@@ -4,6 +4,10 @@ if [ -n "$SSH_CONNECTION" ] && [ -z "$TMUX" ] && command -v tmux >/dev/null; the
 	tmux new-session -A -s main
 fi
 
+# Go stuff
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
+
 # ========================= OPTIONS =========================
 setopt histignorealldups sharehistory
 setopt hist_reduce_blanks       # remove extra blanks from history
@@ -30,9 +34,6 @@ fi
 
 
 # ======================== COMPLETION ========================
-autoload -Uz compinit
-compinit
-
 [[ "$OS" == "Linux" ]] && command -v dircolors >/dev/null && eval "$(dircolors -b)"
 
 # Case-insensitive completion (lowercase matches uppercase and vice versa)
@@ -63,11 +64,16 @@ zstyle ':completion:*' completer _expand _complete _correct _approximate
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
+autoload -Uz compinit
+compinit
+
 # ========================= TOOLS ==========================
 export PATH="$HOME/.local/bin:$PATH"
 
 # pyenv
-export PATH="$HOME/.pyenv/shims:$PATH"
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d "$PYENV_ROOT/bin" ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+command -v pyenv >/dev/null && eval "$(pyenv init -)"
 
 if [[ "$OS" == "Darwin" ]]; then
     eval "$(/opt/homebrew/bin/brew shellenv)"

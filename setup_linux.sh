@@ -15,6 +15,7 @@ sudo apt install -y \
     stow \
     zsh \
     tmux \
+    tmux-plugin-manager \
     curl \
     jq \
     ripgrep \
@@ -61,7 +62,7 @@ STOW_TARGET="$HOME"
 
 cd "$STOW_DIR"
 
-stow --target "$STOW_TARGET" aliases git ssh zsh
+stow --target "$STOW_TARGET" aliases git ssh zsh tmux claude
 
 echo "✅ Core dotfiles stowed"
 

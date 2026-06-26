@@ -87,8 +87,15 @@ STOW_TARGET="$HOME"
 
 cd "$STOW_DIR"
 
-stow --target "$STOW_TARGET" aliases git ssh zsh ghostty hammerspoon
+stow --target "$STOW_TARGET" aliases git ssh zsh ghostty hammerspoon tmux claude
 
 echo "✅ Core dotfiles stowed"
+
+# ===================== TPM =====================
+if [[ ! -d "$HOME/.tmux/plugins/tpm" ]]; then
+  echo "📦 Installing TPM (tmux plugin manager)..."
+  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+  echo "✅ TPM installed"
+fi
 
 echo "Mac Setup complete! 🎉"
