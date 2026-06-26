@@ -15,6 +15,16 @@ autocmd("FileType", {
   end,
 })
 
+-- auto-reload files changed outside of neovim
+autocmd({ "FocusGained", "BufEnter", "CursorHold" }, {
+  group = augroup("auto_reload", { clear = true }),
+  callback = function()
+    if vim.fn.mode() ~= "c" then
+      vim.cmd("checktime")
+    end
+  end,
+})
+
 -- restore cursor position on file open
 autocmd("BufReadPost", {
   group = augroup("restore_cursor", { clear = true }),

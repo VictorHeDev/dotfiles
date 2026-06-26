@@ -19,4 +19,5 @@ opt.updatetime = 50
 opt.splitright = true
 opt.splitbelow = true
 opt.cursorline = true
+opt.autoread = true
 opt.cmdheight = 0  -- hides cmd bar
