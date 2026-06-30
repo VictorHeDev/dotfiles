@@ -6,6 +6,7 @@ return {
       { "<leader>f", group = "find" },
       { "<leader>l", group = "lazygit" },
       { "<leader>q", group = "session" },
+      { "<leader>t", group = "todos" },
       { "<leader>h", group = "git hunks" },
       { "<leader>r", group = "rename/refactor" },
       { "<leader>c", group = "code" },

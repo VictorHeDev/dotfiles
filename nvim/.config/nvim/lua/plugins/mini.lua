@@ -8,5 +8,6 @@ return {
     require("mini.notify").setup()
     vim.notify = require("mini.notify").make_notify()
     require("mini.cursorword").setup()
+    require("mini.ai").setup()
   end,
 }
