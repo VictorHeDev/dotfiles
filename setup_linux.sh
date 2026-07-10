@@ -46,6 +46,30 @@ if ! command -v zoxide >/dev/null 2>&1; then
     curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash
 fi
 
+# tree-sitter CLI - required by nvim-treesitter (main branch) to build parsers.
+# Not in apt repos, so install the official release binary into ~/.local/bin
+# (on PATH via zsh/.zshrc). cargo is the last-resort fallback.
+if ! command -v tree-sitter >/dev/null 2>&1; then
+    echo "📦 Installing tree-sitter-cli..."
+    case "$(uname -m)" in
+        x86_64|amd64)  TS_ARCH="x64" ;;
+        aarch64|arm64) TS_ARCH="arm64" ;;
+        *)             TS_ARCH="" ;;
+    esac
+    TS_VERSION="$(curl -fsSL https://api.github.com/repos/tree-sitter/tree-sitter/releases/latest | jq -r '.tag_name' 2>/dev/null || true)"
+    if [[ -n "$TS_ARCH" && -n "$TS_VERSION" && "$TS_VERSION" != "null" ]]; then
+        mkdir -p "$HOME/.local/bin"
+        curl -fsSL "https://github.com/tree-sitter/tree-sitter/releases/download/${TS_VERSION}/tree-sitter-linux-${TS_ARCH}.gz" -o /tmp/tree-sitter.gz
+        gunzip -f /tmp/tree-sitter.gz
+        install -m755 /tmp/tree-sitter "$HOME/.local/bin/tree-sitter"
+        rm -f /tmp/tree-sitter
+    elif command -v cargo >/dev/null 2>&1; then
+        cargo install tree-sitter-cli
+    else
+        echo "⚠️  Could not resolve tree-sitter release (arch/network?) and no cargo; skipping (nvim-treesitter can't build parsers until this is installed)."
+    fi
+fi
+
 echo "✅ Package installation complete"
 
 # ===================== DEFAULT SHELL =====================

@@ -6,15 +6,6 @@ autocmd("TextYankPost", {
   callback = function() vim.highlight.on_yank() end,
 })
 
--- nvim 0.12.3 bug: bundled lua treesitter query references non-existent "operator" field
-autocmd("FileType", {
-  pattern = "lua",
-  group = augroup("disable_lua_ts", { clear = true }),
-  callback = function(args)
-    pcall(vim.treesitter.stop, args.buf)
-  end,
-})
-
 -- auto-reload files changed outside of neovim
 autocmd({ "FocusGained", "BufEnter", "CursorHold" }, {
   group = augroup("auto_reload", { clear = true }),

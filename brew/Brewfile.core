@@ -35,6 +35,7 @@ brew 'eza'  # replacement for ls
 brew 'neovim'
 brew 'tmux'
 brew 'lazygit'
+brew 'tree-sitter-cli'  # CLI used by nvim-treesitter (main branch) to build parsers
 
 # casks
 cask 'hammerspoon'
