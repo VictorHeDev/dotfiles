@@ -1,1 +1,9 @@
 Brewfile.lock.json
+
+# Claude Code state lives in ~/.claude/ — only allowlist what's safe to version;
+# everything else (credentials, history, sessions, cache, transcripts) must stay untracked.
+claude/.claude/*
+!claude/.claude/CLAUDE.md
+!claude/.claude/settings.json
+!claude/.claude/skills/
+!claude/.claude/skills/**

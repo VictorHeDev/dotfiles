@@ -22,7 +22,10 @@ sudo apt install -y \
     fd-find \
     fzf \
     zsh-autosuggestions \
-    zsh-syntax-highlighting
+    zsh-syntax-highlighting \
+    neovim \
+    bat \
+    gh
 
 # Packages not in standard apt repos — install via alternative methods
 # git-delta
@@ -62,7 +65,7 @@ STOW_TARGET="$HOME"
 
 cd "$STOW_DIR"
 
-stow --target "$STOW_TARGET" aliases git ssh zsh tmux claude
+stow --target "$STOW_TARGET" aliases git ssh zsh tmux claude nvim
 
 echo "✅ Core dotfiles stowed"
 

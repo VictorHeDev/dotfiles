@@ -29,4 +29,4 @@
 
 ## Repository Context
 - Work projects live under `~/work/` (separate git identity configured via `.gitconfig-work`)
-- Homelab server: `homelab` (192.168.1.194, user `wood`)
+- Homelab server: `homelab` (192.168.1.35, user `wood`)

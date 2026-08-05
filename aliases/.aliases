@@ -47,7 +47,7 @@ else
 fi
 
 # -- SSH --
-alias ssh_wood='ssh wood@192.168.1.194'
+alias ssh_wood='ssh wood@192.168.1.35'
 
 # -- Docker --
 alias dc="docker compose"
