@@ -25,6 +25,16 @@ autocmd({ "FocusGained", "BufEnter", "CursorHold" }, {
   end,
 })
 
+-- wrap long lines in markdown/text buffers
+autocmd("FileType", {
+  pattern = { "markdown", "text" },
+  group = augroup("wrap_prose", { clear = true }),
+  callback = function()
+    vim.opt_local.wrap = true
+    vim.opt_local.linebreak = true
+  end,
+})
+
 -- restore cursor position on file open
 autocmd("BufReadPost", {
   group = augroup("restore_cursor", { clear = true }),
