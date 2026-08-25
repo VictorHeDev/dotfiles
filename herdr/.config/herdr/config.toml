@@ -1,0 +1,7 @@
+[theme]
+name = "tokyo-night"
+
+[[keys.command]]
+key = "g"
+type = "pane"
+command = "lazygit"

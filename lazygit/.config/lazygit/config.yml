@@ -1,0 +1,13 @@
+git:
+  paging:
+    colorArg: always
+    pager: delta --dark --paging=never --line-numbers --side-by-side
+
+gui:
+  nerdFontsVersion: "3"
+
+customCommands:
+  - key: "<c-o>"
+    command: "gh pr view --web"
+    context: "global"
+    loadingText: "Opening PR in browser..."

@@ -23,11 +23,24 @@ sudo apt install -y \
     fzf \
     zsh-autosuggestions \
     zsh-syntax-highlighting \
-    neovim \
+    build-essential \
     bat \
     gh
 
 # Packages not in standard apt repos — install via alternative methods
+# neovim (apt's version lags far behind upstream; this config needs a recent
+# release for native LSP config and treesitter's main branch)
+if [[ "$(readlink -f "$(command -v nvim 2>/dev/null)" 2>/dev/null)" != "$HOME/.local/share/nvim-linux-x86_64/bin/nvim" ]]; then
+    echo "📦 Installing neovim..."
+    curl -sSL -o /tmp/nvim-linux-x86_64.tar.gz https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
+    rm -rf ~/.local/share/nvim-linux-x86_64
+    mkdir -p ~/.local/share
+    tar xzf /tmp/nvim-linux-x86_64.tar.gz -C ~/.local/share/
+    rm /tmp/nvim-linux-x86_64.tar.gz
+    mkdir -p ~/.local/bin
+    ln -sf ~/.local/share/nvim-linux-x86_64/bin/nvim ~/.local/bin/nvim
+fi
+
 # git-delta
 if ! command -v delta >/dev/null 2>&1; then
     echo "📦 Installing git-delta..."
@@ -49,6 +62,23 @@ if ! command -v zoxide >/dev/null 2>&1; then
     curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash
 fi
 
+# lazygit
+if ! command -v lazygit >/dev/null 2>&1; then
+    echo "📦 Installing lazygit..."
+    LAZYGIT_VERSION="$(curl -s https://api.github.com/repos/jesseduffield/lazygit/releases/latest | jq -r '.tag_name' | tr -d v)"
+    curl -sL "https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_linux_x86_64.tar.gz" -o /tmp/lazygit.tar.gz
+    tar xf /tmp/lazygit.tar.gz -C /tmp lazygit
+    mkdir -p ~/.local/bin
+    mv /tmp/lazygit ~/.local/bin/lazygit
+    rm /tmp/lazygit.tar.gz
+fi
+
+# herdr
+if ! command -v herdr >/dev/null 2>&1; then
+    echo "📦 Installing herdr..."
+    curl -fsSL https://herdr.dev/install.sh | sh
+fi
+
 echo "✅ Package installation complete"
 
 # ===================== DEFAULT SHELL =====================
@@ -65,7 +95,7 @@ STOW_TARGET="$HOME"
 
 cd "$STOW_DIR"
 
-stow --target "$STOW_TARGET" aliases git ssh zsh tmux claude nvim
+stow --target "$STOW_TARGET" aliases git ssh zsh tmux claude nvim herdr lazygit
 
 echo "✅ Core dotfiles stowed"
 

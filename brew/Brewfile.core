@@ -35,6 +35,7 @@ brew 'eza'  # replacement for ls
 brew 'neovim'
 brew 'tmux'
 brew 'lazygit'
+brew 'herdr'
 
 # casks
 cask 'hammerspoon'

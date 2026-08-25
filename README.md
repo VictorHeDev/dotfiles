@@ -43,6 +43,9 @@ The setup scripts will:
 | `git` | `.gitconfig`, `.gitignore` |
 | `ghostty` | Terminal config |
 | `hammerspoon` | Window management (macOS only) |
+| `herdr` | herdr (herdr.dev) agent-multiplexer config |
+| `lazygit` | Lazygit config |
+| `nvim` | Neovim config (currently only stowed by `setup_linux.sh`; not yet in `setup_mac.sh`) |
 | `ssh` | SSH config |
 | `tmux` | `.config/tmux/tmux.conf` |
 | `zsh` | `.zshrc`, `.zshenv`, `.zprofile` |
