@@ -36,6 +36,8 @@ brew 'neovim'
 brew 'tmux'
 brew 'lazygit'
 brew 'herdr'
+brew 'tree-sitter-cli' # compiles treesitter parsers on demand
+brew 'go'               # Mason needs this on PATH to build gopls/goimports
 
 # casks
 cask 'hammerspoon'

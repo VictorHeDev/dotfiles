@@ -87,7 +87,7 @@ STOW_TARGET="$HOME"
 
 cd "$STOW_DIR"
 
-stow --target "$STOW_TARGET" aliases git ssh zsh ghostty hammerspoon tmux claude herdr lazygit
+stow --target "$STOW_TARGET" aliases git ssh zsh ghostty hammerspoon tmux claude herdr lazygit nvim
 
 echo "✅ Core dotfiles stowed"
 

@@ -35,3 +35,13 @@ autocmd("BufReadPost", {
     end
   end,
 })
+
+-- line wrap markdown at word boundaries
+autocmd("FileType", {
+  group = augroup("markdown_wrap", { clear = true }),
+  pattern = "markdown",
+  callback = function()
+    vim.opt_local.wrap = true
+    vim.opt_local.linebreak = true
+  end,
+})

@@ -13,6 +13,7 @@ return {
     map("n", "<leader>fr", fzf.oldfiles, { desc = "Recent files" })
     map("n", "<leader>fd", fzf.diagnostics_document, { desc = "Document diagnostics" })
     map("n", "<leader>fs", fzf.lsp_document_symbols, { desc = "Document symbols" })
+    map("n", "<leader>fS", fzf.lsp_workspace_symbols, { desc = "Workspace symbols" })
     map("n", "<leader>fw", fzf.grep_cword, { desc = "Grep word under cursor" })
   end,
 }

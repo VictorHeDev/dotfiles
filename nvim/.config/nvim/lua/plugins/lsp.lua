@@ -5,7 +5,11 @@ return {
   },
   {
     "williamboman/mason-lspconfig.nvim",
-    dependencies = { "williamboman/mason.nvim", "saghen/blink.cmp" },
+    dependencies = {
+      "williamboman/mason.nvim",
+      "neovim/nvim-lspconfig", -- ships base cmd/filetypes/root_markers per server; without it nothing launches
+      "saghen/blink.cmp",
+    },
     config = function()
       vim.lsp.config("*", {
         capabilities = require("blink.cmp").get_lsp_capabilities(),
@@ -26,15 +30,47 @@ return {
           map("K", vim.lsp.buf.hover, "Hover docs")
           map("<leader>rn", vim.lsp.buf.rename, "Rename symbol")
           map("<leader>ca", vim.lsp.buf.code_action, "Code action")
+
+          local client = vim.lsp.get_client_by_id(args.data.client_id)
+          if client and client:supports_method("textDocument/inlayHint") then
+            vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+            map("<leader>ih", function()
+              vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = bufnr }), { bufnr = bufnr })
+            end, "Toggle inlay hints")
+          end
         end,
       })
 
       vim.lsp.config("gopls", {
         settings = {
           gopls = {
-            analyses = { unusedparams = true, shadow = true },
+            analyses = {
+              unusedparams = true,
+              shadow = true,
+              nilness = true,
+              unusedwrite = true,
+              useany = true,
+            },
             staticcheck = true,
             gofumpt = true,
+            usePlaceholders = true,
+            completeUnimported = true,
+            codelenses = {
+              generate = true,
+              gc_details = true,
+              test = true,
+              tidy = true,
+              upgrade_dependency = true,
+            },
+            hints = {
+              assignVariableTypes = true,
+              compositeLiteralFields = true,
+              compositeLiteralTypes = true,
+              constantValues = true,
+              functionTypeParameters = true,
+              parameterNames = true,
+              rangeVariableTypes = true,
+            },
           },
         },
       })

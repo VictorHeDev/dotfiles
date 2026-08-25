@@ -24,6 +24,7 @@ sudo apt install -y \
     zsh-autosuggestions \
     zsh-syntax-highlighting \
     build-essential \
+    golang-go \
     bat \
     gh
 
@@ -77,6 +78,16 @@ fi
 if ! command -v herdr >/dev/null 2>&1; then
     echo "📦 Installing herdr..."
     curl -fsSL https://herdr.dev/install.sh | sh
+fi
+
+# tree-sitter-cli (needed by nvim-treesitter to compile parsers; not in apt)
+if ! command -v tree-sitter >/dev/null 2>&1; then
+    echo "📦 Installing tree-sitter-cli..."
+    curl -sL https://github.com/tree-sitter/tree-sitter/releases/latest/download/tree-sitter-linux-x64.gz -o /tmp/tree-sitter.gz
+    gunzip -f /tmp/tree-sitter.gz
+    mkdir -p ~/.local/bin
+    mv /tmp/tree-sitter ~/.local/bin/tree-sitter
+    chmod +x ~/.local/bin/tree-sitter
 fi
 
 echo "✅ Package installation complete"
