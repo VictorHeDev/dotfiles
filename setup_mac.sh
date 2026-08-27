@@ -23,6 +23,13 @@ fi
 
 echo "✅ Homebrew setup complete"
 
+# mermaid-cli bundles its own puppeteer, which needs its pinned headless
+# Chrome downloaded separately (brew doesn't do this) — used by diagram.nvim
+if command -v mmdc >/dev/null 2>&1; then
+  echo "🌐 Installing mermaid-cli's headless Chrome for diagram.nvim..."
+  node "$(brew --prefix mermaid-cli)/libexec/lib/node_modules/@mermaid-js/mermaid-cli/node_modules/puppeteer/install.mjs"
+fi
+
 # check if /opt/homebrew/share exists and changes ownership recursively to the current user
 # removes groups/other write permissions to the top-level dir and Zsh plugin dirs
 echo "🔐 Fixing Zsh compinit permissions..."
