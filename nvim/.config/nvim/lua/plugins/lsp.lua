@@ -84,8 +84,12 @@ return {
         },
       })
 
+      vim.lsp.config("ts_ls", {})
+
+      vim.lsp.config("tailwindcss", {})
+
       require("mason-lspconfig").setup({
-        ensure_installed = { "gopls", "lua_ls" },
+        ensure_installed = { "gopls", "lua_ls", "ts_ls", "tailwindcss" },
         automatic_enable = true,
       })
     end,

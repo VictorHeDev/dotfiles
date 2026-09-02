@@ -6,7 +6,7 @@ return {
     lazy = false,
     config = function()
       local ts = require("nvim-treesitter")
-      local ensure = { "go", "gomod", "gosum", "gowork", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline", "bash", "json", "yaml" }
+      local ensure = { "go", "gomod", "gosum", "gowork", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline", "bash", "json", "yaml", "typescript", "tsx", "css", "javascript" }
       ts.install(ensure)
 
       vim.api.nvim_create_autocmd("FileType", {
