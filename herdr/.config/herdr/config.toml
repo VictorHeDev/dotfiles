@@ -5,3 +5,6 @@ name = "tokyo-night"
 key = "g"
 type = "pane"
 command = "lazygit"
+
+[keys]
+prefix = "ctrl+space"
