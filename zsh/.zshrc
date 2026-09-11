@@ -1,9 +1,3 @@
-# ===================== TMUX AUTO-ATTACH =====================
-# If SSHing in and not already in tmux, attach or create a session
-if [ -n "$SSH_CONNECTION" ] && [ -z "$TMUX" ] && command -v tmux >/dev/null; then
-	tmux new-session -A -s main
-fi
-
 # Go stuff
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin

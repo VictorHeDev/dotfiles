@@ -12,5 +12,6 @@
   "agentPushNotifEnabled": true,
   "enabledPlugins": {
     "vercel@claude-plugins-official": true
-  }
+  },
+  "hooks": {"SessionStart":[{"matcher":"*","hooks":[{"type":"command","command":"bash '/home/wood/.claude/hooks/herdr-agent-state.sh' session","timeout":10}]}]}
 }
