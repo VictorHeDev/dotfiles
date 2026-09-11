@@ -6,15 +6,6 @@ autocmd("TextYankPost", {
   callback = function() vim.highlight.on_yank() end,
 })
 
--- nvim 0.12.3 bug: bundled lua treesitter query references non-existent "operator" field
-autocmd("FileType", {
-  pattern = "lua",
-  group = augroup("disable_lua_ts", { clear = true }),
-  callback = function(args)
-    pcall(vim.treesitter.stop, args.buf)
-  end,
-})
-
 -- auto-reload files changed outside of neovim
 autocmd({ "FocusGained", "BufEnter", "CursorHold" }, {
   group = augroup("auto_reload", { clear = true }),
@@ -43,15 +34,5 @@ autocmd("BufReadPost", {
     if mark[1] > 1 and mark[1] <= vim.api.nvim_buf_line_count(0) then
       vim.api.nvim_win_set_cursor(0, mark)
     end
-  end,
-})
-
--- line wrap markdown at word boundaries
-autocmd("FileType", {
-  group = augroup("markdown_wrap", { clear = true }),
-  pattern = "markdown",
-  callback = function()
-    vim.opt_local.wrap = true
-    vim.opt_local.linebreak = true
   end,
 })

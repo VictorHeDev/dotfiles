@@ -38,10 +38,10 @@ nvim  # lazy.nvim bootstraps and installs all plugins on first launch
 |--------|---------|
 | [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim) | Git hunk navigation, staging, blame |
 | [which-key.nvim](https://github.com/folke/which-key.nvim) | Keybinding hints popup |
-| [persistence.nvim](https://github.com/folke/persistence.nvim) | Session save/restore per directory |
 | [render-markdown.nvim](https://github.com/MeanderingProgrammer/render-markdown.nvim) | Renders markdown in-buffer |
 | [todo-comments.nvim](https://github.com/folke/todo-comments.nvim) | Highlights and searches TODO/FIXME/HACK/NOTE comments |
 | [lazydev.nvim](https://github.com/folke/lazydev.nvim) | Lua LSP completions for Neovim config (vim.api, vim.fn, etc.) |
+| [obsidian.nvim](https://github.com/obsidian-nvim/obsidian.nvim) | Vault-aware links, search, and note commands |
 
 ### mini.nvim
 All from [echasnovski/mini.nvim](https://github.com/echasnovski/mini.nvim):
@@ -131,13 +131,6 @@ Leader key: `Space`
 | `va)` / `vi)` | Around / inside any bracket pair |
 
 Use with any operator: `d`, `c`, `y`, `v`
-
-### Session (persistence)
-| Key | Action |
-|-----|--------|
-| `<leader>qs` | Restore session for current directory |
-| `<leader>ql` | Restore last session |
-| `<leader>qd` | Stop saving current session |
 
 ### Surround (mini.surround)
 | Key | Action |
