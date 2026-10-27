@@ -1,0 +1,4 @@
+---
+# Shared defaults belong here. Keep credentials and machine-specific secrets
+# outside Git (for example in an Ansible Vault file ignored by .gitignore).
+common_packages: []

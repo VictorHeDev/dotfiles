@@ -1,0 +1,6 @@
+---
+- name: Install homelab packages
+  ansible.builtin.package:
+    name: "{{ homelab_packages }}"
+    state: present
+  when: homelab_packages | length > 0

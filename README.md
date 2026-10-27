@@ -34,6 +34,14 @@ The setup scripts will:
 - Install packages
 - Set up dotfiles via stow
 
+## Machine automation
+
+The [`automation/`](automation/README.md) directory contains the Ansible
+foundation for bootstrapping workstations and the Ubuntu homelab. It uses the
+stowed `homelab` SSH alias rather than committing connection details. See its
+README for clean-controller setup, connection checks, and safe `--check`
+previews before applying changes.
+
 ## Stow packages
 
 | Package | Contents |

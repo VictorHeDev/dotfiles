@@ -1,0 +1,69 @@
+---
+# Review before copying any value into tracked variables or documentation.
+# This file is intentionally ignored by Git.
+generated_at: "{{ ansible_facts['date_time']['iso8601'] }}"
+host: "{{ inventory_hostname }}"
+ansible_facts:
+  distribution: "{{ ansible_facts['distribution'] }}"
+  distribution_version: "{{ ansible_facts['distribution_version'] }}"
+  kernel: "{{ ansible_facts['kernel'] }}"
+  architecture: "{{ ansible_facts['architecture'] }}"
+  virtualization_type: "{{ ansible_facts['virtualization_type'] }}"
+review_required:
+  - "Secrets, Docker environment variables, and Compose files were deliberately not collected."
+  - "Validate machine-specific paths, addresses, UUIDs, and service names before documenting them."
+  - "Docker command failures can mean Docker is absent or the SSH user lacks Docker-group access."
+  - "GPU command failures can mean the relevant utility is absent; they do not imply a failed discovery."
+commands:
+  os_release:
+    rc: {{ discovery_os_release.rc }}
+    output: |
+{{ discovery_os_release.stdout | default('') | indent(6, true) }}
+  packages:
+    rc: {{ discovery_packages.rc }}
+    output: |
+{{ discovery_packages.stdout | default('') | indent(6, true) }}
+  disks:
+    rc: {{ discovery_disks.rc }}
+    output: |
+{{ discovery_disks.stdout | default('') | indent(6, true) }}
+  mounts:
+    rc: {{ discovery_mounts.rc }}
+    output: |
+{{ discovery_mounts.stdout | default('') | indent(6, true) }}
+  docker_version:
+    rc: {{ discovery_docker_version.rc }}
+    output: |
+{{ discovery_docker_version.stdout | default(discovery_docker_version.stderr | default('')) | indent(6, true) }}
+  docker_containers:
+    rc: {{ discovery_docker_containers.rc }}
+    output: |
+{{ discovery_docker_containers.stdout | default(discovery_docker_containers.stderr | default('')) | indent(6, true) }}
+  docker_volumes:
+    rc: {{ discovery_docker_volumes.rc }}
+    output: |
+{{ discovery_docker_volumes.stdout | default(discovery_docker_volumes.stderr | default('')) | indent(6, true) }}
+  docker_networks:
+    rc: {{ discovery_docker_networks.rc }}
+    output: |
+{{ discovery_docker_networks.stdout | default(discovery_docker_networks.stderr | default('')) | indent(6, true) }}
+  listening_ports:
+    rc: {{ discovery_ports.rc }}
+    output: |
+{{ discovery_ports.stdout | default('') | indent(6, true) }}
+  network_interfaces:
+    rc: {{ discovery_network_interfaces.rc }}
+    output: |
+{{ discovery_network_interfaces.stdout | default('') | indent(6, true) }}
+  network_routes:
+    rc: {{ discovery_network_routes.rc }}
+    output: |
+{{ discovery_network_routes.stdout | default('') | indent(6, true) }}
+  pci_devices:
+    rc: {{ discovery_pci.rc }}
+    output: |
+{{ discovery_pci.stdout | default(discovery_pci.stderr | default('')) | indent(6, true) }}
+  nvidia_gpus:
+    rc: {{ discovery_nvidia.rc }}
+    output: |
+{{ discovery_nvidia.stdout | default(discovery_nvidia.stderr | default('')) | indent(6, true) }}

@@ -1,0 +1,6 @@
+---
+- name: Install workstation packages
+  ansible.builtin.package:
+    name: "{{ workstation_packages }}"
+    state: present
+  when: workstation_packages | length > 0

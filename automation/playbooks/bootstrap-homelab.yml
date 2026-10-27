@@ -1,0 +1,7 @@
+---
+- name: Bootstrap Ubuntu homelab hosts
+  hosts: homelab_servers
+  become: true
+  roles:
+    - common
+    - homelab
