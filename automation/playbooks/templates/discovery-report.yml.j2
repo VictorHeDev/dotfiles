@@ -1,14 +1,14 @@
 ---
 # Review before copying any value into tracked variables or documentation.
 # This file is intentionally ignored by Git.
-generated_at: "{{ ansible_date_time.iso8601 }}"
+generated_at: "{{ ansible_facts['date_time']['iso8601'] }}"
 host: "{{ inventory_hostname }}"
 ansible_facts:
-  distribution: "{{ ansible_distribution }}"
-  distribution_version: "{{ ansible_distribution_version }}"
-  kernel: "{{ ansible_kernel }}"
-  architecture: "{{ ansible_architecture }}"
-  virtualization_type: "{{ ansible_virtualization_type }}"
+  distribution: "{{ ansible_facts['distribution'] }}"
+  distribution_version: "{{ ansible_facts['distribution_version'] }}"
+  kernel: "{{ ansible_facts['kernel'] }}"
+  architecture: "{{ ansible_facts['architecture'] }}"
+  virtualization_type: "{{ ansible_facts['virtualization_type'] }}"
 review_required:
   - "Secrets, Docker environment variables, and Compose files were deliberately not collected."
   - "Validate machine-specific paths, addresses, UUIDs, and service names before documenting them."

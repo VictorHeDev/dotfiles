@@ -7,7 +7,7 @@
   vars:
     discovery_report_dir: "{{ playbook_dir }}/../reports/discovery"
     discovery_report_filename: >-
-      {{ inventory_hostname }}-{{ ansible_date_time.iso8601_basic_short }}.yml
+      {{ inventory_hostname }}-{{ ansible_facts['date_time']['iso8601_basic_short'] }}.yml
 
   tasks:
     - name: Read operating-system release information
