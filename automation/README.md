@@ -17,6 +17,8 @@ Stow manages user configuration files, while Ansible manages machine state.
 The `homelab` inventory host intentionally matches the `Host homelab` alias
 in the repository's stowed SSH configuration. SSH therefore supplies its
 hostname, user, and identity configuration without storing those values here.
+The containing group is named `homelab_servers` to keep group and host names
+unambiguous.
 
 ## Bootstrap a clean controller
 
