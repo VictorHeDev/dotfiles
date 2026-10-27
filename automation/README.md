@@ -31,10 +31,26 @@ unambiguous.
    stow --target "$HOME" ssh
    ```
 
-2. Install Ansible and linting tools on the controller. `pipx` keeps their
-   Python dependencies isolated from the system Python:
+2. Install Ansible and linting tools on the controller.
+
+   **macOS (Homebrew):**
 
    ```bash
+   brew install ansible ansible-lint yamllint
+   ```
+
+   **Ubuntu/Debian:**
+
+   ```bash
+   sudo apt update
+   sudo apt install -y ansible ansible-lint yamllint
+   ```
+
+   Alternatively, use `pipx` to keep Python dependencies isolated:
+
+   ```bash
+   python3 -m pip install --user pipx
+   python3 -m pipx ensurepath
    pipx install --include-deps ansible
    pipx install ansible-lint
    pipx install yamllint
