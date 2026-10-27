@@ -1,0 +1,6 @@
+---
+- name: Apply the complete baseline
+  import_playbook: bootstrap-workstation.yml
+
+- name: Apply the complete baseline to the homelab
+  import_playbook: bootstrap-homelab.yml

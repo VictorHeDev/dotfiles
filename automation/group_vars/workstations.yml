@@ -1,0 +1,4 @@
+---
+# Packages common to development workstations. Populate this list as the
+# existing setup scripts are migrated into Ansible roles.
+workstation_packages: []

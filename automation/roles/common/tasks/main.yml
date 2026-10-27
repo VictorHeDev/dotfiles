@@ -1,0 +1,9 @@
+---
+- name: Verify the managed node is reachable
+  ansible.builtin.ping:
+
+- name: Install common packages
+  ansible.builtin.package:
+    name: "{{ common_packages }}"
+    state: present
+  when: common_packages | length > 0

@@ -1,1 +1,9 @@
 Brewfile.lock.json
+
+# Local Ansible controller state and encrypted local secrets.
+automation/.ansible/
+automation/.cache/
+automation/.venv/
+automation/*.retry
+automation/vault.yml
+automation/vault_*.yml

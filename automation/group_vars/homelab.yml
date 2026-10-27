@@ -1,0 +1,4 @@
+---
+# Packages common to Ubuntu homelab hosts. Populate this list as the existing
+# server setup is migrated into Ansible roles.
+homelab_packages: []
