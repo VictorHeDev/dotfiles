@@ -5,7 +5,6 @@
 - **Shell**: zsh with Starship prompt
 - **Editor**: neovim (`nvim`)
 - **Terminal**: Ghostty
-- **Multiplexer**: tmux with TPM plugins
 - **Dotfiles**: managed with GNU Stow at `~/dotfiles`
 
 ## Code Style
