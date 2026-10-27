@@ -33,7 +33,6 @@ brew 'eza'  # replacement for ls
 
 # NVIM
 brew 'neovim'
-brew 'tmux'
 brew 'lazygit'
 
 # casks

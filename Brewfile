@@ -27,7 +27,6 @@ brew 'fzf'
 
 # NVIM
 brew 'neovim'
-brew 'tmux'
 brew 'lazygit'
 
 # containers
@@ -49,4 +48,3 @@ cask 'font-fira-code'
 cask 'font-jetbrains-mono'
 
 # vscode -- install-extension
-
