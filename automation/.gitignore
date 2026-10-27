@@ -4,3 +4,4 @@
 *.retry
 vault.yml
 vault_*.yml
+reports/discovery/

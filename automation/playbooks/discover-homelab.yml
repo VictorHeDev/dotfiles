@@ -1,0 +1,138 @@
+---
+- name: Collect a read-only homelab architecture snapshot
+  hosts: homelab_servers
+  gather_facts: true
+  become: false
+  tags: [discovery, read_only]
+  vars:
+    discovery_report_dir: "{{ playbook_dir }}/../reports/discovery"
+    discovery_report_filename: >-
+      {{ inventory_hostname }}-{{ ansible_date_time.iso8601_basic_short }}.yml
+
+  tasks:
+    - name: Read operating-system release information
+      ansible.builtin.command:
+        argv: [cat, /etc/os-release]
+      register: discovery_os_release
+      changed_when: false
+      check_mode: false
+
+    - name: Read installed Debian packages
+      ansible.builtin.command:
+        argv:
+          - dpkg-query
+          - --show
+          - --showformat=${binary:Package}\t${Version}\n
+      register: discovery_packages
+      changed_when: false
+      check_mode: false
+
+    - name: Read block-device topology
+      ansible.builtin.command:
+        argv:
+          - lsblk
+          - --json
+          - --output
+          - NAME,KNAME,TYPE,SIZE,FSTYPE,LABEL,UUID,MOUNTPOINTS,MODEL,TRAN
+      register: discovery_disks
+      changed_when: false
+      check_mode: false
+
+    - name: Read mounted filesystems
+      ansible.builtin.command:
+        argv:
+          - findmnt
+          - --json
+          - --output
+          - TARGET,SOURCE,FSTYPE,SIZE,USED,AVAIL
+      register: discovery_mounts
+      changed_when: false
+      check_mode: false
+
+    - name: Read Docker version and runtime information
+      ansible.builtin.command:
+        argv: [docker, version]
+      register: discovery_docker_version
+      changed_when: false
+      failed_when: false
+      check_mode: false
+
+    - name: Read running Docker containers
+      ansible.builtin.command:
+        argv: [docker, ps]
+      register: discovery_docker_containers
+      changed_when: false
+      failed_when: false
+      check_mode: false
+
+    - name: Read Docker volumes
+      ansible.builtin.command:
+        argv: [docker, volume, ls]
+      register: discovery_docker_volumes
+      changed_when: false
+      failed_when: false
+      check_mode: false
+
+    - name: Read Docker networks
+      ansible.builtin.command:
+        argv: [docker, network, ls]
+      register: discovery_docker_networks
+      changed_when: false
+      failed_when: false
+      check_mode: false
+
+    - name: Read listening TCP and UDP ports
+      ansible.builtin.command:
+        argv: [ss, --tcp, --udp, --listening, --numeric, --processes]
+      register: discovery_ports
+      changed_when: false
+      check_mode: false
+
+    - name: Read network interfaces
+      ansible.builtin.command:
+        argv: [ip, --json, address]
+      register: discovery_network_interfaces
+      changed_when: false
+      check_mode: false
+
+    - name: Read network routes
+      ansible.builtin.command:
+        argv: [ip, --json, route]
+      register: discovery_network_routes
+      changed_when: false
+      check_mode: false
+
+    - name: Read PCI devices and loaded drivers
+      ansible.builtin.command:
+        argv: [lspci, -nnk]
+      register: discovery_pci
+      changed_when: false
+      failed_when: false
+      check_mode: false
+
+    - name: Read NVIDIA GPU state when available
+      ansible.builtin.command:
+        argv:
+          - nvidia-smi
+          - --query-gpu=name,driver_version,memory.total
+          - --format=csv,noheader
+      register: discovery_nvidia
+      changed_when: false
+      failed_when: false
+      check_mode: false
+
+    - name: Create the private local discovery-report directory
+      ansible.builtin.file:
+        path: "{{ discovery_report_dir }}"
+        state: directory
+        mode: "0700"
+      delegate_to: localhost
+      become: false
+
+    - name: Write a local, review-only architecture snapshot
+      ansible.builtin.template:
+        src: discovery-report.yml.j2
+        dest: "{{ discovery_report_dir }}/{{ discovery_report_filename }}"
+        mode: "0600"
+      delegate_to: localhost
+      become: false

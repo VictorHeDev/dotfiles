@@ -73,6 +73,25 @@ unambiguous.
 
 ## Run and validate
 
+### Read-only homelab discovery
+
+The discovery playbook gathers operating-system, package, storage, Docker,
+network, port, and GPU information without changing the managed host. It has
+no `become` tasks and uses fixed read commands only. It deliberately excludes
+Docker environment variables, Compose files, and secret material.
+
+Run it normally (not with `--check`, because command tasks intentionally run
+to collect data):
+
+```bash
+ansible-playbook playbooks/discover-homelab.yml
+```
+
+It writes a timestamped YAML snapshot to `reports/discovery/` on the
+controller. That directory is ignored by Git and reports are mode `0600`.
+Review and redact a snapshot before copying selected facts into tracked
+documentation or variables.
+
 Run the non-mutating connectivity check:
 
 ```bash
