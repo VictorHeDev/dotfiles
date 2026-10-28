@@ -100,6 +100,10 @@ command -v zoxide >/dev/null && eval "$(zoxide init zsh)"
 # bat: on Ubuntu the binary is "batcat" due to a name conflict
 command -v batcat >/dev/null && alias bat='batcat'
 
+if [[ -n "$REX_BIN_DIR" ]]; then
+    export PATH="$REX_BIN_DIR:$PATH"
+fi
+
 # ========================= PLUGINS =========================
 # Fish-like autosuggestions + syntax highlighting (must be sourced LAST)
 if [[ "$OS" == "Darwin" ]]; then
