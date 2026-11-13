@@ -49,7 +49,7 @@ return {
       })
 
       require("mason-lspconfig").setup({
-        ensure_installed = { "gopls", "lua_ls" },
+        ensure_installed = { "gopls", "lua_ls" , "basedpyright"},
         automatic_enable = true,
       })
     end,
